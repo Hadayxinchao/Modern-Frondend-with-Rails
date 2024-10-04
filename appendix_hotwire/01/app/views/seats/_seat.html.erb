@@ -1,0 +1,29 @@
+<td>
+  <span
+    class="p-4 m-2 my-10 text-lg
+           transition-all duration-1000 ease-in-out
+           <%= seat.hover_color_for(user) %>
+           border-black border-4 <%= seat.color_for(user) %>"
+    data-cy="<%= seat.row_seat %>"
+    data-color="<%= seat.color_for(user) %>"
+    data-status="<%= seat.status(user) %>">
+    <% if seat.status(user) == "unsold" || seat.status(user) == "held" %>
+      <%= button_to(
+            seat.number,
+            seat_path(
+              id: seat.id,
+              user_id: user.id,
+              row_number: row.number,
+              seat_number: seat.number,
+              tickets_to_buy_count: row.tickets_to_buy_count,
+              concert_id: concert.id
+            ),
+            method: seat.status(user) == "unsold" ? "put" : "delete",
+            form: {class: "inline"},
+            class: "bg-white"
+          ) %>
+    <% else %>
+      <%= seat.number %>
+    <% end %>
+  </span>
+</td>

@@ -1,0 +1,10 @@
+<%= turbo_stream.replace(
+      dom_id(@row),
+      partial: "rows/row",
+      locals: {row: @row, concert: @concert, user: @user}
+    ) %>
+<%= turbo_stream.replace(
+      "subtotal",
+      partial: "venues/subtotal",
+      locals: {concert: @concert, user: @user}
+    ) %>

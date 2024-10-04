@@ -1,0 +1,3 @@
+{
+  "john-ellis.rubocop-nova.base-command" : "bundle exec standardrb"
+}

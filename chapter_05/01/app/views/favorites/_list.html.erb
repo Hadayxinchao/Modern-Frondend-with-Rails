@@ -1,0 +1,33 @@
+<%= turbo_frame_tag("favorite-concerts") do %>
+  <section
+      class="my-4"
+      data-controller="css"
+      data-css-css-class="hidden"
+      data-css-status-value="false">
+    <div class="text-3xl font-bold">
+      Favorite Concerts
+      <button
+          class="<%= SimpleForm.button_class %>"
+          data-action="click->css#toggle">
+        <%= image_tag(
+              "chevron-right.svg",
+              width: 25,
+              height: 25,
+              class: "inline mb-3"
+            ) %>
+      </button>
+    </div>
+    <div data-css-target="elementToChange">
+      <div class="text-xl font-bold" id="no-favorites">
+        <% if current_user.favorites.empty? %>
+          No favorite concerts yet
+        <% end %>
+      </div>
+      <div id="favorite-concerts-list">
+        <% current_user.favorites.each do |favorite| %>
+          <%= render(favorite) %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

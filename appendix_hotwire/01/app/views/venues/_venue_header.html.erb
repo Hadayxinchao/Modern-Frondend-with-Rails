@@ -1,0 +1,33 @@
+<%
+<section class="venue-header">
+  <div>
+    <div class="flex text-2xl font-bold mx-4">
+      <span>How many tickets would you like?</span>
+<%
+<%
+      <span class="select ml-4"
+            data-controller="form cable-receiver"
+            data-cable-reciever-channel-name-value="ConcertChannel"
+            data-cable-receiver-concert-id-value="<%= concert.id %>">
+        <%= form_with(
+              url: tickets_to_buy_count_path,
+              method: "patch",
+              data: {
+                "form-target": "form",
+                "cable-receiver-target": "form"
+              }
+            ) do |f| %>
+          <%= hidden_field_tag(:concert_id, concert.id) %>
+          <%= hidden_field_tag(:venue_id, venue.id) %>
+          <%= select_tag(
+                :tickets_to_buy_count,
+                options_for_select(1..venue.seats_per_row),
+                "data-cy": "ticketsToBuy",
+                "data-action": "change->form#submit"
+              ) %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</section>
+<%

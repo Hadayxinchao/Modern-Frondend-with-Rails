@@ -1,0 +1,5 @@
+<tr class="h-20" id="<%= dom_id(row) %>">
+  <% row.seats.each do |seat| %>
+    <%= render(seat, user: user, row: row, concert: concert) %>
+  <% end %>
+</tr>

@@ -1,0 +1,18 @@
+<%
+<%= turbo_stream.replace(
+      "venue-body",
+      partial: "venues/venue_body",
+      locals: {
+        concert: @concert,
+        user: @user,
+        tickets_to_buy_count: params[:tickets_to_buy_count].to_i
+      }
+    ) %>
+<%
+<%
+<%= turbo_stream.replace(
+      "subtotal",
+      partial: "venues/subtotal",
+      locals: {concert: @concert, user: @user}
+    ) %>
+<%

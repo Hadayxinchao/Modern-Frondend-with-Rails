@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:5678",
+  "screenshotsFolder": "tmp/cypress_screenshots",
+  "videosFolder": "tmp/cypress_videos",
+  "trashAssetsBeforeRuns": false
+}

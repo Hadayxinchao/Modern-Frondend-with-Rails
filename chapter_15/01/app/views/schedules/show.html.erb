@@ -1,0 +1,48 @@
+<%= turbo_stream_from(current_user, :favorites) %>
+<style>
+  <% @schedule.schedule_days.each do |schedule_day| %>
+    <% today = "data-#{schedule_day.day.by_example("2006-01-02")}" %>
+    .concert[<%= today %>]:first-child::before,
+    .concert:not([<%= today %>]) + [<%= today %>]::before
+    {
+        content: "<%= schedule_day.day.by_example("Monday, January 2, 2006") %>";
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        font-weight: 700;
+    }
+  <% end %>
+</style>
+<section data-controller="sold-out-data">
+  <section>
+    <div class="grid grid-cols-7 gap-0 mb-6"
+        data-controller="calendar">
+      <% @schedule.schedule_days.each do |schedule_day| %>
+        <% date_string = schedule_day.day.by_example("2006-01-02") %>
+        <div class="text-center border-b-2 border-transparent"
+            id="calendar-day-<%= schedule_day.day_string %>"
+            data-controller="css"
+            data-css-css-class="border-red-700"
+            data-css-status-value="false"
+            data-css-target="elementToChange"
+            data-calendar-target="calendarDay"
+            data-schedule-attribute="data-<%= schedule_day.day_string %>"
+            data-action="click->css#toggle click->calendar#filter">
+          <%= schedule_day.day.by_example("Jan 2") %>
+        </div>
+      <% end %>
+      <div data-action="click->calendar#showAll">
+        Show All
+      </div>
+    </div>
+    <%= render("schedules/search_form") %>
+  </section>
+  <br>
+  <% if current_user %>
+    <%= render("favorites/list") %>
+  <% end %>
+  <section data-controller="sort">
+    <% @concerts.sort_by(&:start_time).each do |concert| %>
+      <%= render(concert, user: current_user) %>
+    <% end %>
+  </section>
+</section>

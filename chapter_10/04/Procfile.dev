@@ -1,0 +1,5 @@
+redis: docker run --rm -it -p 6379:6379 redis:latest
+web: bin/rails server -p 3000
+js: yarn dev
+css: yarn build:css --watch
+

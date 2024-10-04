@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>North By North East</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag(
+          "tailwind",
+          "inter-font",
+          "data-turbo-track": "reload") %>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <section class="py-12 px-6">
+      <%= render "layouts/nav" %>
+      <div class="container mx-auto">
+        <div class="mt-6">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

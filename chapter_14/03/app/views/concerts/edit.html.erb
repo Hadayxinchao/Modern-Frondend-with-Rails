@@ -1,0 +1,12 @@
+<h1>Editing concert</h1>
+
+<%= turbo_frame_tag(dom_id(@concert)) do %>
+  <%= render "form", concert: @concert %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this concert", @concert %> |
+  <%= link_to "Back to concerts", concerts_path %>
+</div>

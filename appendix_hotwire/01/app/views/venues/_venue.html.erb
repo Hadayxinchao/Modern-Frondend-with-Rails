@@ -1,0 +1,13 @@
+<%= turbo_frame_tag(dom_id(venue)) do %>
+  <section>
+    <%= render("venues/subtotal", concert: concert, user: user) %>
+    <%= render("venues/venue_header", concert: concert, venue: venue) %>
+    <%= render(
+          "venues/venue_body",
+          venue: venue,
+          user: user,
+          concert: concert,
+          tickets_to_buy_count: 1
+        ) %>
+  </section>
+<% end %>

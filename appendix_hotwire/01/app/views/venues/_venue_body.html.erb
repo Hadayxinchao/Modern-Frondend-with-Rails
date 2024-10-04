@@ -1,0 +1,12 @@
+<section class="venue-body">
+  <%= turbo_frame_tag("venue-body") do %>
+    <table className="table">
+      <tbody>
+        <% concert.rows(
+            tickets_to_buy_count: tickets_to_buy_count).each do |row| %>
+          <%= render(row, user: user, concert: concert) %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>
